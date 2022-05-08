@@ -3,7 +3,6 @@ from flask import Flask, session, request
 from flask_mail import Mail, Message
 
 import os
-from dotenv import load_dotenv
 
 import requests
 import random
@@ -15,8 +14,8 @@ from flask_cors import CORS
 
 # Load environment variables
 load_dotenv()
-username = os.getenv('EMAIL_USERNAME')
-password = os.getenv('EMAIL_PASSWORD')
+username = os.environ.get('EMAIL_USERNAME')
+password = os.environ.get('EMAIL_PASSWORD')
 
 # init backend
 app = Flask(__name__)
@@ -66,8 +65,8 @@ def decodeLicenseKey(licenseKey):
 
 # Get access token
 def getBearerToken(assetId):
-    accessKey = os.getenv('accessKey')
-    accessSecret = os.getenv('accessSecret')
+    accessKey = os.environ.get('accessKey')
+    accessSecret = os.environ.get('accessSecret')
 
     url = "https://kbdgsb6g57.execute-api.us-east-1.amazonaws.com/prod/auth/getAccessToken"
 
